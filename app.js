@@ -1,13 +1,10 @@
-async function logJSONData() {
-    const response = await fetch("https://friends.roblox.com/v1/users/153353260/friends");
-    const jsonData = await response.json();
-    return jsonData;
-}
+const response = await fetch("https://friends.roblox.com/v1/users/153353260/friends");
+const jsonData = await response.json();
 
-const express = require('express');
-const app = express();
-  
-// Defining get request at '/' route
-app.get('/', function(req, res) {
-    res.json(logJSONData);
+var http = require('http');
+
+var app = http.createServer(function(req,res){
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(jsonData));
 });
+app.listen(3000);
